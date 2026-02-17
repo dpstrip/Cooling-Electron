@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cooling Simulation (Euler)</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Cooling Simulation with Euler's Method</h1>
+
+      <section class="card">
+        <h2>Required Inputs</h2>
+        <div class="grid">
+          <label>
+            Starting temperature (T₀)
+            <input id="startTemperature" type="number" value="100" step="any" />
+          </label>
+
+          <label>
+            Cooling temperature (Tcool)
+            <input id="coolingTemperature" type="number" value="20" step="any" />
+          </label>
+
+          <label>
+            Step size (h)
+            <input id="stepSize" type="number" value="0.5" min="0.0001" step="any" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Other Parameters Needed</h2>
+        <div class="grid">
+          <label>
+            Cooling coefficient (k)
+            <input id="coolingCoefficient" type="number" value="0.2" min="0.0001" step="any" />
+          </label>
+
+          <label>
+            Maximum simulation time
+            <input id="maxTime" type="number" value="25" min="0.1" step="any" />
+          </label>
+
+          <label>
+            Stop tolerance |T - Tcool|
+            <input id="tolerance" type="number" value="0.05" min="0" step="any" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Code Segregation</h2>
+        <ul>
+          <li>First-order ODE solver (Euler): <strong>src/solver/eulerSolver.js</strong></li>
+          <li>Temperature exchange model: <strong>src/domain/temperatureModel.js</strong></li>
+          <li>Simulation orchestration: <strong>src/application/coolingSimulationService.js</strong></li>
+        </ul>
+      </section>
+
+      <section class="actions">
+        <button id="runSimulation">Run Simulation</button>
+        <span id="statusText"></span>
+      </section>
+
+      <section class="card">
+        <h2>Cooling Curve</h2>
+        <canvas id="coolingChart" width="1000" height="350"></canvas>
+      </section>
+
+      <section class="card">
+        <h2>Euler Step Values</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Time</th>
+                <th>Temperature T</th>
+                <th>dT/dt</th>
+              </tr>
+            </thead>
+            <tbody id="valuesBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
