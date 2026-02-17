@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "dist:win": "electron-builder --win"
+    "dist:win": "electron-builder --win",
+    "make": "electron-builder --linux AppImage"
   },
   "author": "",
   "license": "MIT",
